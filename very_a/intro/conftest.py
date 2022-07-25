@@ -1,6 +1,17 @@
 import pytest
 
-from django.contrib.auth.models import User 
+from pytest_factoryboy import register
+from test.app1.factories import UserFactory, CategoryFactory, ProductFactory
+from django.contrib.auth.models import User
+
+register(UserFactory)
+register(CategoryFactory)
+register(ProductFactory)
+
+@pytest.fixture
+def new_user4(db, user_factory):
+    user = user_factory.create()
+    return user
 
 @pytest.fixture()
 def user_1(db):
@@ -12,7 +23,7 @@ def user_2(db):
     print("create-user")  
     return user
 
-@pytest.fixture()
+@pytest.fixture
 def new_user_factory(db):
     def create_app_user(
         username: str,

@@ -7,3 +7,4 @@ def test_new_user(new_user1):
 def test_new_user(new_user2):
     print(new_user2.is_staff)
     assert new_user2.is_staff
+
