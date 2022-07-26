@@ -1,5 +1,3 @@
-from pyexpat import model
-from unicodedata import category
 import factory
 
 from django.contrib.auth.models import User
@@ -29,5 +27,5 @@ class ProductFactory(factory.django.DjangoModelFactory):
     description = fake.text()
     slug = 'product_slug'
     regular_price = '9.99'
-    discount_price = '4.99'
+    discount_price = '4.99' 
 
