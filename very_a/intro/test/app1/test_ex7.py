@@ -10,11 +10,11 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from selenium.webdriver.chrome.options import Options
 
-# @pytest.mark.usefixtures("chrome_driver_init")
-# class Test_URL_Chrome(LiveServerTestCase):
-#     def test_open_url(self):
-#         self.driver.get(("%s%s" % (self.live_server_url, "/admin/")))
-#         assert "Log in | Django site admin" in self.driver.title
+@pytest.mark.usefixtures("chrome_driver_init")
+class Test_URL_Chrome(LiveServerTestCase):
+    def test_open_url(self):
+        self.driver.get(("%s%s" % (self.live_server_url, "/admin/")))
+        assert "Log in | Django site admin" in self.driver.title
 
 @pytest.mark.usefixtures("driver_init")
 class Test_URL_Chrome:
