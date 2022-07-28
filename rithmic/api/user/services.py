@@ -8,7 +8,6 @@ from . import models
 if TYPE_CHECKING:
     from .models import User
 
-
 @dataclasses.dataclass
 class UserDataClass:
     first_name: str

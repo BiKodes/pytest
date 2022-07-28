@@ -14,7 +14,6 @@ def user():
     )
 
     user = user_services.create_user(user_dc=user_dc)
-
     return user
 
 @pytest.fixture

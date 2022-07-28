@@ -1,6 +1,6 @@
 import dataclasses
 import datetime
-from typing import TYPE_CHECKING
+from typing import List, TYPE_CHECKING
 
 from django.shortcuts import get_object_or_404
 from rest_framework import exceptions
@@ -37,7 +37,7 @@ def create_status(user, status: "StatusDataClass") -> "StatusDataClass":
     return StatusDataClass.from_instance(status_model=status_create)
 
 
-def get_user_status(user: "User") -> list["StatusDataClass"]:
+def get_user_status(user: "User") -> List[StatusDataClass]:
     user_status = status_models.Status.objects.filter(user=user)
 
     return [
