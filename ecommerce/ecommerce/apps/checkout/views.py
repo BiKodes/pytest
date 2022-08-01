@@ -7,8 +7,10 @@ from django.shortcuts import render
 from ecommerce.apps.account.models import Address
 from ecommerce.apps.basket.basket import Basket
 from ecommerce.apps.orders.models import Order, OrderItem
+from paypalcheckoutsdk.orders import OrdersGetRequest
 
 from .models import DeliveryOptions
+from .paypal import PayPalClient
 
 
 @login_required
@@ -66,14 +68,6 @@ def payment_selection(request):
         return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
     return render(request, "checkout/payment_selection.html", {})
-
-
-####
-# PayPay
-####
-from paypalcheckoutsdk.orders import OrdersGetRequest
-
-from .paypal import PayPalClient
 
 
 @login_required
