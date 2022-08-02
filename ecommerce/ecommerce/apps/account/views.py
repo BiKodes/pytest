@@ -9,8 +9,8 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
-# from orders.models import Order
-# from orders.views import user_orders
+from ecommerce.apps.orders.models import Order
+from ecommerce.apps.orders.views import user_orders
 from ecommerce.apps.catalogue.models import Product
 
 from .forms import RegistrationForm, UserAddressForm, UserEditForm
@@ -90,6 +90,8 @@ def account_register(request):
             )
             user.email_user(subject=subject, message=message)
             return render(request, "account/registration/register_email_confirm.html", {"form": registerForm})
+        else:
+            return HttpResponse("Error handler content", status=400)
     else:
         registerForm = RegistrationForm()
     return render(request, "account/registration/register.html", {"form": registerForm})
@@ -110,9 +112,6 @@ def account_activate(request, uidb64, token):
         return render(request, "account/registration/activation_invalid.html")
 
 
-# Addresses
-
-
 @login_required
 def view_address(request):
     addresses = Address.objects.filter(customer=request.user)
@@ -128,6 +127,8 @@ def add_address(request):
             address_form.customer = request.user
             address_form.save()
             return HttpResponseRedirect(reverse("account:addresses"))
+        else:
+            return HttpResponse(reverse("Error handler content", status=400))
     else:
         address_form = UserAddressForm()
     return render(request, "account/dashboard/edit_addresses.html", {"form": address_form})
