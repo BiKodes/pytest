@@ -34,4 +34,4 @@ def test_product_url_resolver(client, product):
 
 
 def test_product_specification_value(product_spec_value):
-    assert product_spec_value.__str__() == "100" 
+    assert product_spec_value.__str__() == "100"

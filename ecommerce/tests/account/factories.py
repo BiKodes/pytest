@@ -1,7 +1,6 @@
 import factory
 from ecommerce.apps.account.models import Address, Customer
 from faker import Faker
-from pyexpat import model
 
 fake = Faker()
 

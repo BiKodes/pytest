@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from mptt.models import MPTTModel, TreeForeignKey
+from mptt.models import MPTTModel
 
 
 class Category(MPTTModel):
@@ -17,7 +17,7 @@ class Category(MPTTModel):
         unique=True,
     )
     slug = models.SlugField(verbose_name=_("Category safe URL"), max_length=255, unique=True)
-    parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
     is_active = models.BooleanField(default=True)
 
     class MPTTMeta:
